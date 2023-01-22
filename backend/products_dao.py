@@ -40,10 +40,13 @@ def insert_product(connection, product):
 
     return None
 
+def delete_product(connection, product_id):
+    cursor = connection.cursor()
+    delete_product = ("DELETE FROM products where product_id=" + str(product_id))
+    cursor.execute(delete_product)
+    connection.commit()
+ 
+
 if __name__ == '__main__':
     connection = retreive_sql_connection()
-    print(insert_product(connection, {
-        'product_name': 'mango',
-        'uom_id' : '2',
-        'price_per_unit' : '20'
-    }))
+    print(delete_product(connection, 5))
